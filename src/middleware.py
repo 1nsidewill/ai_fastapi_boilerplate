@@ -35,6 +35,7 @@ class SessionMiddleware(BaseHTTPMiddleware):
         request.state.session_id = session_id
         request.state.session_data = session_data
 
+        # Endpoint 진입
         response = await call_next(request)
 
         self.sessions[session_id] = request.state.session_data
