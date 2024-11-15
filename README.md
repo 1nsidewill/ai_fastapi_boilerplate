@@ -23,28 +23,30 @@ AI 융합연구소 팀을 위한 **AI FastAPI Boilerplate**에 오신 것을 환
 ```bash
 git clone https://github.com/1nsidewill/ai_fastapi_boilerplate.git
 cd ai_fastapi_boilerplate
+```
+
+
 2. Python 버전 확인 및 설치
 Python 3.11.10을 사용하고 있는지 확인하세요:
 
-bash
-코드 복사
+```bash
 python3 --version
 만약 Python 버전이 3.11.10이 아니라면 아래 단계를 따라 설치하고 설정하세요. 이미 3.11.10이라면 이 단계를 건너뛰세요:
-
+```
 Python 3.11.10 설치 (Ubuntu 기준):
 
-bash
-코드 복사
+```bash
 sudo apt update
 sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
 sudo apt install -y python3.11
+```
 Python 3.11을 기본 버전으로 설정:
 
-bash
-코드 복사
+```bash
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+```
 위 명령어들을 실행한 후, Python 버전을 다시 확인하여 3.11.10이 출력되는지 확인하세요.
 
 3. Poetry 설치 및 가상 환경 설정
