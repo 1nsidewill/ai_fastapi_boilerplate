@@ -10,7 +10,7 @@ AI 융합연구소 팀을 위한 AI FastAPI Boilerplate에 오신 것을 환영�
 
 - 서로 다른 Python 버전 사용 🤯
 - 혼합된 프레임워크와 비표준 설정 😅
-- 일관된 의존성 관리를 위한 Poetry의 부재 📦
+- 일관된 의존성 관리를 위한 Poetry의 부재 🛋️
 
 이 보일러플레이트를 통해 우리는 모두 Python 3.11.10, FastAPI, 그리고 Poetry를 사용하여 통일된 개발 환경을 갖출 수 있습니다.
 
@@ -88,6 +88,19 @@ poetry shell
 poetry add <package-name>
 ```
 
+## 💄 주요 패키지들
+
+이 보일러플레이트에는 다음과 같은 주요 패키지들이 포함되어 있습니다:
+
+- **Python**: 3.11.10 버전을 사용합니다.
+- **FastAPI**: `^0.115.5` - 빠르고 효율적인 웹 프레임워크입니다.
+- **Uvicorn**: `^0.32.0` - ASGI 서버로 FastAPI를 실행합니다.
+- **Pydantic Settings**: `^2.6.1` - 설정 관리 및 환경 변수를 쉽게 처리합니다.
+- **Jinja2**: `^3.1.4` - HTML 템플릿 렌더링을 위해 사용됩니다.
+- **Itsdangerous**: `^2.2.0` - `session_id`의 서명과 안전한 사용을 보장합니다.
+
+모든 패키지는 [tool.poetry.dependencies] 섹션에 명시되어 있으며, 의존성을 일관되게 관리할 수 있습니다.
+
 ## 📂 프로젝트 구조
 
 프로젝트 구조는 다음과 같습니다:
@@ -118,7 +131,7 @@ ai_fastapi_boilerplate/
   - `main.py`: 앱의 진입점으로, 초기화와 일반 설정을 관리합니다.
 - `templates/`: HTML 템플릿들이 저장되는 곳이며, 라우트를 통해 Jinja2로 렌더링됩니다.
 
-## 🛠️ 비즈니스 로직 구성
+## 🔧 비즈니스 로직 구성
 
 각 비즈니스 로직 유닛(`auth` 또는 `crud` 등)은 다음을 포함합니다:
 
@@ -130,7 +143,7 @@ ai_fastapi_boilerplate/
 - `templates/` 디렉터리에 저장됩니다.
 - Jinja2를 사용하여 동적 HTML 콘텐츠를 제공합니다.
 
-## 🐳 Docker를 사용해 배포하기
+## 🛠️ Docker를 사용해 배포하기
 
 AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있는 기능도 포함되어 있습니다. 이 가이드는 EC2 인스턴스에서 Docker를 사용하여 FastAPI 앱을 설정하고 실행하는 방법을 설명합니다.
 
@@ -200,9 +213,8 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
    - `-d`: 백그라운드에서 컨테이너를 실행합니다.
    - `--name ai_fastapi_app`: 컨테이너 이름을 지정하여 관리하기 쉽게 만듭니다.
    - `-p 8000:8000`: 서버의 포트 8000을 컨테이너의 포트 8000에 매핑합니다.
-   - DockerFile 내에도 포트 번호를 맵핑하는 라인이 있으니 똑같으 수정해주세요.
-   - `--env-file env/development.env`: 개발 환경 변수를 로드합니다. (사실 DockerFile에 # Set environment to deployment
-ENV ENVIRONMENT=deployment 를 통해 환경을 설정하고, config.py에서 환경에 맞게 변수를 가져오니 필수는 아닙니다)
+   - DockerFile 내에도 포트 번호를 맵핑하는 라인이 있으니 똑같이 수정해주세요.
+   - `--env-file env/development.env`: 개발 환경 변수를 로드합니다. (사실 DockerFile에 # Set environment to deployment ENV ENVIRONMENT=deployment 를 통해 환경을 설정하고, config.py에서 환경에 맞게 변수를 가져오니 필수는 아닙니다)
 
 ### Step 5: 설정 확인
 
