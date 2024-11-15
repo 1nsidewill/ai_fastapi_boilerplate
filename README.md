@@ -200,7 +200,9 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
    - `-d`: 백그라운드에서 컨테이너를 실행합니다.
    - `--name ai_fastapi_app`: 컨테이너 이름을 지정하여 관리하기 쉽게 만듭니다.
    - `-p 8000:8000`: 서버의 포트 8000을 컨테이너의 포트 8000에 매핑합니다.
-   - `--env-file env/development.env`: 개발 환경 변수를 로드합니다.
+   - DockerFile 내에도 포트 번호를 맵핑하는 라인이 있으니 똑같으 수정해주세요.
+   - `--env-file env/development.env`: 개발 환경 변수를 로드합니다. (사실 DockerFile에 # Set environment to deployment
+ENV ENVIRONMENT=deployment 를 통해 환경을 설정하고, config.py에서 환경에 맞게 변수를 가져오니 필수는 아닙니다)
 
 ### Step 5: 설정 확인
 
