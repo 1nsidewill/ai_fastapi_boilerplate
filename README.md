@@ -156,13 +156,13 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
 
 ### Step 2: `.env` 파일 생성
 
-1. **루트 디렉토리 내에 ****\`\`**** 폴더를 생성합니다:**
+1. **루트 디렉토리 내에 폴더를 생성합니다:**
 
    ```bash
    mkdir env
    ```
 
-2. **개발용 및 배포용 ****\`\`**** 파일을 생성합니다.** 예시:
+2. **개발용 및 배포용 파일을 생성합니다.** 예시:
 
    ```bash
    nano env/development.env
@@ -184,7 +184,7 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
 
 ### Step 3: Docker 이미지 빌드
 
-1. \`\`**을 사용하여 Docker 이미지를 빌드합니다:**
+1. **커맨드를 사용하여 Docker 이미지를 빌드합니다:**
    ```bash
    docker build -t ai_fastapi_app .
    ```
