@@ -4,6 +4,7 @@ import os
 
 class Settings(BaseSettings):
     app_name: str
+    secret_key: str
     
     # Milvus Connection Info
     MILVUS_URL: str
@@ -11,10 +12,7 @@ class Settings(BaseSettings):
     # OpenAPI Connection Info
     OPENAI_API_KEY: str
     
-    
-    
-    
-    
+
     # Select the environment file dynamically based on an environment variable
     model_config = SettingsConfigDict(
         env_file=os.path.join(

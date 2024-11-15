@@ -6,6 +6,7 @@ from src.auth.router import auth_router
 from src.crud.router import crud_router 
 
 from src.exceptions import *
+from src.middleware import *
 
 # Load Env
 config = get_settings()
@@ -22,19 +23,12 @@ async def root():
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(crud_router, prefix="/crud", tags=["crud"])
 
-# # Session Management
-# app.add_middleware(SessionMiddleware, secret_key="your_secret_key")
+# Register Middleware
+# 세션 같은 경우엔 Middleware을 사용해도 되고 depends 를 사용해도 됨.
+app.add_middleware(SessionMiddleware, secret_key=config.secret_key)
 
 # Register custom exception handlers
 app.add_exception_handler(ItemNotFoundException, item_not_found_exception_handler)
-
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=config.allow_origins,
-#     allow_credentials=config.allow_credentials,
-#     allow_methods=config.allow_methods,
-#     allow_headers=config.allow_headers,
-# )
 
 if __name__ == "__main__":
     import uvicorn
