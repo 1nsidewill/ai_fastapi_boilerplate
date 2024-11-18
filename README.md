@@ -115,6 +115,7 @@ ai_fastapi_boilerplate/
 │   ├── crud/
 │   ├── middleware/
 │   ├── config.py
+│   ├── database.py
 │   ├── exceptions.py
 │   └── main.py
 └── templates/
@@ -128,6 +129,7 @@ ai_fastapi_boilerplate/
   - `auth/` 및 `crud/`: 비즈니스 로직별로 나누어 구조화되어 있습니다.
   - `middleware/`: 세션 관리와 같은 기능을 처리합니다.
   - `config.py`: 로컬 또는 배포 환경에 따라 설정을 읽어옵니다.
+  - `database.py`: 데이터베이스 연결을 관리하며, 세션 생성 및 종료를 처리합니다.
   - `exceptions.py`: 애플리케이션에서 사용하는 커스텀 예외를 처리합니다.
   - `main.py`: 앱의 진입점으로, 초기화와 일반 설정을 관리합니다.
 - `templates/`: HTML 템플릿들이 저장되는 곳이며, 라우트를 통해 Jinja2로 렌더링됩니다.
