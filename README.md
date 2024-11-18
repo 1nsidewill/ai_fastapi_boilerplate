@@ -170,7 +170,7 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
    cd ai_fastapi_boilerplate
    ```
 
-### Step 2: `.env` 파일 생성
+### Step 2: `.env.liv` 파일 생성
 
 1. **루트 디렉토리 내에 폴더를 생성합니다:**
 
@@ -181,11 +181,10 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
 2. **개발용 및 배포용 파일을 생성합니다.** 예시:
 
    ```bash
-   nano env/development.env
-   nano env/deployment.env
+   nano .env.live
    ```
 
-3. **각 환경 파일에 환경 변수를 추가합니다.** 예시 (`development.env`):
+3. **각 환경 파일에 환경 변수를 추가합니다.** 예시 (`.env.dev`):
 
    ```makefile
    MILVUS_URL=your_milvus_url
