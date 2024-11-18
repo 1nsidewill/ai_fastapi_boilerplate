@@ -16,7 +16,7 @@ RUN pip install poetry && \
 COPY . /app
 
 # Set environment to deployment
-ENV ENVIRONMENT=deployment
+ENV ENVIRONMENT=live
 
 # 설정할 포트 번호를 아래 두 줄에 작성해줍니다.
 # Expose the port your FastAPI app will run on

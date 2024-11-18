@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from fastapi.responses import RedirectResponse 
-from src.config import get_settings
+from fastapi.responses import RedirectResponse
+import os
 
 from src.auth.router import auth_router
 from src.crud.router import crud_router 
@@ -9,15 +9,27 @@ from src.exceptions import *
 from src.middleware import *
 
 # Load Env
+from src.config import get_settings
 config = get_settings()
 
-# Initiate app
-app = FastAPI(title=config.app_name)
+# Determine the environment
+environment = os.getenv('ENVIRONMENT', 'dev')
 
-# Show Docs In Main Page
+# Initiate app with conditional documentation
+if environment == 'dev':
+    app = FastAPI(title=config.app_name)
+else:
+    app = FastAPI(title=config.app_name, docs_url=None, redoc_url=None, openapi_url=None)
+
+# Show Docs In Main Page only in development environment
 @app.get("/", include_in_schema=False)
 async def root():
-    return RedirectResponse(url="/docs")
+    if environment == 'dev':
+        # Redirect to docs in development environment
+        return RedirectResponse(url="/docs")
+    else:
+        # In other environments, do not show docs
+        return {"message": "Welcome to the API. Documentation is not available in this environment."}
 
 # Including Routers
 app.include_router(auth_router, prefix="/auth", tags=["auth"])

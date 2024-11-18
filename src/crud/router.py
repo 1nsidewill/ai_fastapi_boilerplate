@@ -3,7 +3,7 @@ from src.exceptions import *
 
 crud_router = APIRouter()
 
-@crud_router.get("/get_age")
+@crud_router.api_route("/get_age", methods=["GET"])
 async def get_age(name: str):
     """
     ## Description:

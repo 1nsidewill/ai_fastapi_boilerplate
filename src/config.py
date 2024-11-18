@@ -16,8 +16,8 @@ class Settings(BaseSettings):
     # Select the environment file dynamically based on an environment variable
     model_config = SettingsConfigDict(
         env_file=os.path.join(
-            "env", 
-            f"{os.getenv('ENVIRONMENT', 'development')}.env"
+            ".", 
+            f".env.{os.getenv('ENVIRONMENT', 'dev')}"
         ), 
         env_file_encoding='utf-8'
     )

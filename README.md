@@ -108,7 +108,8 @@ poetry add <package-name>
 ```
 ai_fastapi_boilerplate/
 ├── .vscode/
-├── env/
+├── .env.dev
+├── .env.live
 ├── src/
 │   ├── auth/
 │   ├── crud/
@@ -122,7 +123,7 @@ ai_fastapi_boilerplate/
 ## 📌 주요 디렉터리와 파일
 
 - `.vscode/`: VSCode 설정 파일로, 디버깅을 쉽게 하고 일관된 프로젝트 설정을 유지합니다.
-- `env/`: 환경별 설정 파일인 `deployment.env`와 `development.env`를 포함합니다. 비밀 키와 설정은 `.env` 파일로 작성하고, `.gitignore`에 등록하세요.
+- `.env.dev` 및 `.env.live`: 개발 및 라이브 환경 설정 파일입니다. 비밀 키와 설정은 이 파일들에 작성하고, `.gitignore`에 등록하세요.
 - `src/`: 주요 앱 디렉터리:
   - `auth/` 및 `crud/`: 비즈니스 로직별로 나누어 구조화되어 있습니다.
   - `middleware/`: 세션 관리와 같은 기능을 처리합니다.
@@ -208,13 +209,13 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
 
 1. **환경 파일과 포트 매핑을 지정하여 컨테이너를 실행합니다:**
    ```bash
-   docker run -d --name ai_fastapi_app -p 8000:8000 --env-file env/development.env ai_fastapi_app
+   docker run -d --name ai_fastapi_app -p 8000:8000 --env-file .env.live ai_fastapi_app
    ```
    - `-d`: 백그라운드에서 컨테이너를 실행합니다.
    - `--name ai_fastapi_app`: 컨테이너 이름을 지정하여 관리하기 쉽게 만듭니다.
    - `-p 8000:8000`: 서버의 포트 8000을 컨테이너의 포트 8000에 매핑합니다.
    - DockerFile 내에도 포트 번호를 맵핑하는 라인이 있으니 똑같이 수정해주세요.
-   - `--env-file env/development.env`: 개발 환경 변수를 로드합니다. (사실 DockerFile에 # Set environment to deployment ENV ENVIRONMENT=deployment 를 통해 환경을 설정하고, config.py에서 환경에 맞게 변수를 가져오니 필수는 아닙니다)
+   - `--env-file .env.live`: 개발 환경 변수를 로드합니다. (사실 DockerFile에 # Set environment to deployment ENV ENVIRONMENT=live 를 통해 환경을 설정하고, config.py에서 환경에 맞게 변수를 가져오니 필수는 아닙니다)
 
 ### Step 5: 설정 확인
 

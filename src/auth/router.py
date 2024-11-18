@@ -14,7 +14,7 @@ config = get_settings()
 # Set up Jinja2 templates directory
 templates = Jinja2Templates(directory="templates")
 
-@auth_router.post("/hello_world")
+@auth_router.api_route("/hello_world", methods=["POST"])
 async def hello_world(item: schema.RedisAuthModel):
     """
     ## Description:
@@ -31,7 +31,7 @@ async def hello_world(item: schema.RedisAuthModel):
     
     return {"result" : "Not There"}
 
-@auth_router.get("/what_is_in_env")
+@auth_router.api_route("/what_is_in_env", methods=["GET", "POST"])
 async def what_is_in_env():
     """
     ## Description:
@@ -42,7 +42,7 @@ async def what_is_in_env():
     return {"result" : config.MILVUS_URL}
 
 # Home route to render the template
-@auth_router.get("/index", response_class=HTMLResponse)
+@auth_router.api_route("/index", methods=["GET"], response_class=HTMLResponse)
 async def read_root(request: Request):
     """
     Renders the index.html template.
