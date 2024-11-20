@@ -60,7 +60,7 @@ Poetry가 가상 환경을 프로젝트 폴더 내부에 생성하도록 설정�
 poetry config virtualenvs.in-project true
 ```
 
-### 4. 의존성 설치
+### 4. 의��성 설치
 
 Poetry를 사용하여 모든 프로젝트 의존성을 설치하세요:
 
@@ -127,14 +127,20 @@ ai_fastapi_boilerplate/
 
 - `.vscode/`: VSCode 설정 파일로, 디버깅을 쉽게 하고 일관된 프로젝트 설정을 유지합니다.
 - `.env.dev` 및 `.env.live`: 개발 및 라이브 환경 설정 파일입니다. 비밀 키와 설정은 이 파일들에 작성하고, `.gitignore`에 등록하세요.
+- `Dockerfile`: 루트 디렉터리에 위치하며, Docker 설정을 정의하여 애플리케이션을 컨테이너화합니다.
 - `src/`: 주요 앱 디렉터리:
   - `auth/` 및 `crud/`: 비즈니스 로직별로 나누어 구조화되어 있습니다.
+    - `schema.py`: Pydantic 모델을 사용하여 POST 등의 요청에서 필요한 데이터를 정의하고 처리합니다.
+    - `models.py`: SQLAlchemy를 사용하여 데이터베이스의 테이블 구조를 정의합니다.
+    - `router.py`: FastAPI를 사용하여 각 엔드포인트를 정의하고 라우팅을 설정합니다.
   - `middleware/`: 세션 관리와 같은 기능을 처리합니다.
   - `config.py`: 로컬 또는 배포 환경에 따라 설정을 읽어옵니다.
   - `database.py`: 데이터베이스 연결을 관리하며, 세션 생성 및 종료를 처리합니다.
   - `exceptions.py`: 애플리케이션에서 사용하는 커스텀 예외를 처리합니다.
   - `main.py`: 앱의 진입점으로, 초기화와 일반 설정을 관리합니다.
 - `templates/`: HTML 템플릿들이 저장되는 곳이며, 라우트를 통해 Jinja2로 렌더링됩니다.
+  - `error.html`: HTML 형식으로 오류 응답을 렌더링하기 위한 예제 템플릿입니다.
+  - `index.html`: 기본 페이지를 위한 예제 HTML 템플릿입니다.
 
 ## 🔧 비즈니스 로직 구성
 
