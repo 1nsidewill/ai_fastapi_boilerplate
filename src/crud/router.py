@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 from src.database import get_db
 from src.crud.models import User
 from src.crud.schema import UserCreate, UserUpdate
@@ -41,7 +42,7 @@ async def get_age_orm(name: str, db: Session = Depends(get_db)):
 
 @crud_router.get("/get_age_sql")
 async def get_age_sql(name: str, db: Session = Depends(get_db)):
-    result = db.execute("SELECT age FROM users WHERE name = :name", {"name": name}).fetchone()
+    result = db.execute(text("SELECT age FROM users WHERE name = :name"), {"name": name}).fetchone()
     if result:
         return {"age": result[0]}
     else:

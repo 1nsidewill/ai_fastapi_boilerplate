@@ -12,6 +12,9 @@ from src.middleware import *
 from src.config import get_settings
 config = get_settings()
 
+# Import the database to ensure tables are created
+import src.database
+
 # Determine the environment
 environment = os.getenv('ENVIRONMENT', 'dev')
 
@@ -41,6 +44,7 @@ app.add_middleware(SessionMiddleware, secret_key=config.secret_key)
 
 # Register custom exception handlers
 app.add_exception_handler(ItemNotFoundException, item_not_found_exception_handler)
+app.add_exception_handler(ExistsException, exists_exception_handler)
 
 if __name__ == "__main__":
     import uvicorn

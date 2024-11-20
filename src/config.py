@@ -6,6 +6,8 @@ class Settings(BaseSettings):
     app_name: str
     secret_key: str
     
+    database_url: str
+        
     # Milvus Connection Info
     MILVUS_URL: str
     

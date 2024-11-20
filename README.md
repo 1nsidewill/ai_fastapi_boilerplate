@@ -98,6 +98,8 @@ poetry add <package-name>
 - **Pydantic Settings**: `^2.6.1` - 설정 관리 및 환경 변수를 쉽게 처리합니다.
 - **Jinja2**: `^3.1.4` - HTML 템플릿 렌더링을 위해 사용됩니다.
 - **Itsdangerous**: `^2.2.0` - `session_id`의 서명과 안전한 사용을 보장합니다.
+- **SQLAlchemy**: `^2.0.36` - ORM과 클래식 텍스트 SQL을 모두 지원하여 데이터베이스 상호작용을 유연하게 처리합니다.
+- **PyMySQL**: `^1.1.1` - MySQL 데이터베이스와의 연결을 지원합니다.
 
 모든 패키지는 [tool.poetry.dependencies] 섹션에 명시되어 있으며, 의존성을 일관되게 관리할 수 있습니다.
 
