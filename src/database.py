@@ -21,6 +21,7 @@ Base = declarative_base()
 
 # Import models to ensure they are registered with Base
 import src.crud.models  # Ensure this import is before create_all
+import src.auth.models 
 
 # Create all tables
 # Base.metadata.create_all(bind=engine)
