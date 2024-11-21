@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Create a database engine
-engine = create_engine(settings.database_url, echo=True)
+engine = create_engine(settings.database_url)
 
 # Create a configured "Session" class
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -23,9 +23,7 @@ Base = declarative_base()
 import src.crud.models  # Ensure this import is before create_all
 
 # Create all tables
-logger.info("Creating tables...")
-Base.metadata.create_all(bind=engine)
-logger.info("Tables created.")
+# Base.metadata.create_all(bind=engine)
 
 # Dependency to get DB session
 def get_db():

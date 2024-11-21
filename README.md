@@ -60,7 +60,7 @@ Poetry가 가상 환경을 프로젝트 폴더 내부에 생성하도록 설정�
 poetry config virtualenvs.in-project true
 ```
 
-### 4. 의��성 설치
+### 4. 의존성 설치
 
 Poetry를 사용하여 모든 프로젝트 의존성을 설치하세요:
 
@@ -100,6 +100,7 @@ poetry add <package-name>
 - **Itsdangerous**: `^2.2.0` - `session_id`의 서명과 안전한 사용을 보장합니다.
 - **SQLAlchemy**: `^2.0.36` - ORM과 클래식 텍스트 SQL을 모두 지원하여 데이터베이스 상호작용을 유연하게 처리합니다.
 - **PyMySQL**: `^1.1.1` - MySQL 데이터베이스와의 연결을 지원합니다.
+- **Alembic**: 데이터베이스 마이그레이션을 관리하는 도구입니다.
 
 모든 패키지는 [tool.poetry.dependencies] 섹션에 명시되어 있으며, 의존성을 일관되게 관리할 수 있습니다.
 
@@ -112,6 +113,10 @@ ai_fastapi_boilerplate/
 ├── .vscode/
 ├── .env.dev
 ├── .env.live
+├── alembic/
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions/
 ├── src/
 │   ├── auth/
 │   ├── crud/
@@ -128,6 +133,9 @@ ai_fastapi_boilerplate/
 - `.vscode/`: VSCode 설정 파일로, 디버깅을 쉽게 하고 일관된 프로젝트 설정을 유지합니다.
 - `.env.dev` 및 `.env.live`: 개발 및 라이브 환경 설정 파일입니다. 비밀 키와 설정은 이 파일들에 작성하고, `.gitignore`에 등록하세요.
 - `Dockerfile`: 루트 디렉터리에 위치하며, Docker 설정을 정의하여 애플리케이션을 컨테이너화합니다.
+- `alembic/`: Alembic 설정과 마이그레이션 스크립트가 저장되는 디렉터리입니다.
+  - `env.py`: Alembic 환경 설정 파일로, 데이터베이스 연결과 메타데이터를 설정합니다.
+  - `versions/`: 각 마이그레이션 스크립트가 저장되는 디렉터리입니다.
 - `src/`: 주요 앱 디렉터리:
   - `auth/` 및 `crud/`: 비즈니스 로직별로 나누어 구조화되어 있습니다.
     - `schema.py`: Pydantic 모델을 사용하여 POST 등의 요청에서 필요한 데이터를 정의하고 처리합니다.
@@ -153,6 +161,22 @@ ai_fastapi_boilerplate/
 
 - `templates/` 디렉터리에 저장됩니다.
 - Jinja2를 사용하여 동적 HTML 콘텐츠를 제공합니다.
+
+## 🛠️ 마이그레이션
+
+Alembic을 사용하여 데이터베이스 마이그레이션을 관리합니다. 다음은 마이그레이션을 생성하고 적용하는 방법입니다:
+
+1. **마이그레이션 생성**: SQLAlchemy 모델에 변경 사항이 있을 때마다 새로운 마이그레이션을 생성합니다.
+
+   ```bash
+   alembic revision --autogenerate -m "Description of changes"
+   ```
+
+2. **마이그레이션 적용**: 생성된 마이그레이션을 데이터베이스에 적용합니다.
+
+   ```bash
+   alembic upgrade head
+   ```
 
 ## 🛠️ Docker를 사용해 배포하기
 
