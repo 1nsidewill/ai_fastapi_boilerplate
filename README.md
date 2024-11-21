@@ -114,9 +114,6 @@ ai_fastapi_boilerplate/
 ├── .env.dev
 ├── .env.live
 ├── alembic/
-│   ├── env.py
-│   ├── script.py.mako
-│   └── versions/
 ├── src/
 │   ├── auth/
 │   ├── crud/
