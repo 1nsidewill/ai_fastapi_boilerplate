@@ -12,9 +12,6 @@ from src.middleware import *
 from src.config import get_settings
 config = get_settings()
 
-# Import the database to ensure tables are created
-import src.database
-
 # Determine the environment
 environment = os.getenv('ENVIRONMENT', 'dev')
 
