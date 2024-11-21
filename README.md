@@ -112,7 +112,8 @@ poetry add <package-name>
 ai_fastapi_boilerplate/
 ├── .vscode/
 ├── .env.dev
-├── .env.live
+├── .env.liv
+├── .env.loc
 ├── alembic/
 ├── src/
 │   ├── auth/
@@ -128,14 +129,14 @@ ai_fastapi_boilerplate/
 ## 📌 주요 디렉터리와 파일
 
 - `.vscode/`: VSCode 설정 파일로, 디버깅을 쉽게 하고 일관된 프로젝트 설정을 유지합니다.
-- `.env.dev` 및 `.env.live`: 개발 및 라이브 환경 설정 파일입니다. 비밀 키와 설정은 이 파일들에 작성하고, `.gitignore`에 등록하세요.
+- `.env.dev`, `.env.liv`, 및 `.env.loc`: 개발, 라이브, 로컬 환경 설정 파일입니다. 비밀 키와 설정은 이 파일들에 작성하고, `.gitignore`에 등록하세요.
 - `Dockerfile`: 루트 디렉터리에 위치하며, Docker 설정을 정의하여 애플리케이션을 컨테이너화합니다.
 - `alembic/`: Alembic 설정과 마이그레이션 스크립트가 저장되는 디렉터리입니다.
   - `env.py`: Alembic 환경 설정 파일로, 데이터베이스 연결과 메타데이터를 설정합니다.
   - `versions/`: 각 마이그레이션 스크립트가 저장되는 디렉터리입니다.
 - `src/`: 주요 앱 디렉터리:
   - `auth/` 및 `crud/`: 비즈니스 로직별로 나누어 구조화되어 있습니다.
-    - `schema.py`: Pydantic 모델을 사용하여 POST 등의 요청에서 필요한 데이터를 정의하고 처리합니다.
+    - `repository.py`: Pydantic 모델을 사용하여 POST 등의 요청에서 필요한 데이터를 정의하고 처리합니다.
     - `models.py`: SQLAlchemy를 사용하여 데이터베이스의 테이블 구조를 정의합니다.
     - `router.py`: FastAPI를 사용하여 각 엔드포인트를 정의하고 라우팅을 설정합니다.
   - `middleware/`: 세션 관리와 같은 기능을 처리합니다.
@@ -152,7 +153,7 @@ ai_fastapi_boilerplate/
 각 비즈니스 로직 유닛(`auth` 또는 `crud` 등)은 다음을 포함합니다:
 
 - `router.py`: 해당 유닛의 엔드포인트를 정의합니다.
-- `schema.py`: Pydantic 모델을 사용하여 엔드포인트에서 사용하는 데이터 구조를 정의합니다.
+- `repository.py`: Pydantic 모델을 사용하여 엔드포인트에서 사용하는 데이터 구조를 정의합니다.
 
 ## 🖼️ HTML 템플릿
 
@@ -201,19 +202,13 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
 
 ### Step 2: `.env.liv` 파일 생성
 
-1. **루트 디렉토리 내에 폴더를 생성합니다:**
+1. **루트 디렉토리에 환경 파일을 생성합니다.** 예시:
 
    ```bash
-   mkdir env
+   nano .env.liv
    ```
 
-2. **개발용 및 배포용 파일을 생성합니다.** 예시:
-
-   ```bash
-   nano .env.live
-   ```
-
-3. **각 환경 파일에 환경 변수를 추가합니다.** 예시 (`.env.dev`):
+2. **각 환경 파일에 환경 변수를 추가합니다.** 예시 (`.env.dev`):
 
    ```makefile
    MILVUS_URL=your_milvus_url
@@ -224,7 +219,7 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
    OPENAI_API_KEY=sk-xxxxx
    ```
 
-4. **파일을 저장하고 종료합니다.** `nano` 사용 시 `CTRL+O`로 저장하고 `Enter`를 눌러 확인 후 `CTRL+X`로 종료할 수 있습니다.
+3. **파일을 저장하고 종료합니다.** `nano` 사용 시 `CTRL+O`로 저장하고 `Enter`를 눌러 확인 후 `CTRL+X`로 종료할 수 있습니다.
 
 ### Step 3: Docker 이미지 빌드
 
@@ -239,13 +234,13 @@ AI FastAPI Boilerplate에는 Docker를 사용하여 빠르게 배포할 수 있�
 
 1. **환경 파일과 포트 매핑을 지정하여 컨테이너를 실행합니다:**
    ```bash
-   docker run -d --name ai_fastapi_app -p 8000:8000 --env-file .env.live ai_fastapi_app
+   docker run -d --name ai_fastapi_app -p 8000:8000 --env-file .env.liv ai_fastapi_app
    ```
    - `-d`: 백그라운드에서 컨테이너를 실행합니다.
    - `--name ai_fastapi_app`: 컨테이너 이름을 지정하여 관리하기 쉽게 만듭니다.
    - `-p 8000:8000`: 서버의 포트 8000을 컨테이너의 포트 8000에 매핑합니다.
    - DockerFile 내에도 포트 번호를 맵핑하는 라인이 있으니 똑같이 수정해주세요.
-   - `--env-file .env.live`: 개발 환경 변수를 로드합니다. (사실 DockerFile에 # Set environment to deployment ENV ENVIRONMENT=live 를 통해 환경을 설정하고, config.py에서 환경에 맞게 변수를 가져오니 필수는 아닙니다)
+   - `--env-file .env.liv`: 개발 환경 변수를 로드합니다. (사실 DockerFile에 # Set environment to deployment ENV ENVIRONMENT=live 를 통해 환경을 설정하고, config.py에서 환경에 맞게 변수를 가져오니 필수는 아닙니다)
 
 ### Step 5: 설정 확인
 

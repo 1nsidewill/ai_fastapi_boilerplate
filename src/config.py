@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=os.path.join(
             ".", 
-            f".env.{os.getenv('ENVIRONMENT', 'dev')}"
+            f".env.{os.getenv('ENVIRONMENT', 'loc')}"
         ), 
         env_file_encoding='utf-8'
     )
