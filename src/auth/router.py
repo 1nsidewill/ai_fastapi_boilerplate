@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from src.auth import schema
+from src.auth import repository
 from src.config import get_settings
 
 from fastapi.responses import HTMLResponse
@@ -15,7 +15,7 @@ config = get_settings()
 templates = Jinja2Templates(directory="templates")
 
 @auth_router.api_route("/hello_world", methods=["POST"])
-async def hello_world(item: schema.RedisAuthModel):
+async def hello_world(item: repository.RedisAuthModel):
     """
     ## Description:
     - Redis에 Sessin_id가 있으면 Hello world, 없으면 Not There 을 반환합니다.

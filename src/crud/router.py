@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from src.database import get_db
 from src.crud.models import User
-from src.crud.schema import UserCreate, UserUpdate
+from src.crud.repository import UserCreate, UserUpdate
 from src.exceptions import ItemNotFoundException, ExistsException
 
 crud_router = APIRouter()
