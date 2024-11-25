@@ -31,7 +31,7 @@ async def hello_world(item: repository.RedisAuthModel):
     
     return {"result" : "Not There"}
 
-@auth_router.api_route("/what_is_in_env", methods=["GET", "POST"])
+@auth_router.api_route("/what_is_in_env", methods=["GET"])
 async def what_is_in_env():
     """
     ## Description:
