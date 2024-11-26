@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+*.Zone.Identifier
+.git
+
 # C extensions
 *.so
 
