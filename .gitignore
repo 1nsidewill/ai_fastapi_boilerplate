@@ -137,6 +137,9 @@ output_data/
 output_text_data/
 dummies/
 original/
+.cursorignore
+docker-compose.yaml
+deploy.sh
 
 # Spyder project settings
 .spyderproject
