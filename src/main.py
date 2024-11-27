@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 import os
 
@@ -23,10 +23,10 @@ else:
 
 # Show Docs In Main Page only in development environment
 @app.get("/", include_in_schema=False)
-async def root():
+async def root(request: Request):
     if environment == 'dev':
         # Redirect to docs in development environment
-        return RedirectResponse(url="/docs")
+        return RedirectResponse(url=request.scope.get("root_path") +"/docs")
     else:
         # In other environments, do not show docs
         return {"message": "Welcome to the API. Documentation is not available in this environment."}
