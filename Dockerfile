@@ -18,9 +18,6 @@ COPY . /app
 # Set environment to deployment
 ENV ENVIRONMENT=dev
 
-# 설정할 포트 번호를 아래 두 줄에 작성해줍니다.
-# Expose the port your FastAPI app will run on
-EXPOSE 8701
-
-# Command to run database migrations and start the FastAPI app
-CMD ["sh", "-c", "poetry run alembic upgrade head && poetry run uvicorn src.main:app --host 0.0.0.0 --port 8701"]
+# Command to start the FastAPI app without running alembic upgrade
+# 마지막 root path 를 실제 traefik 의 root path 와 맞춰줘야 함.
+CMD ["poetry", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--root-path", "/fastapi1"]
